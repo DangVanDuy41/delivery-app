@@ -1,11 +1,17 @@
 
 export enum ROLE {
-    USER = "USER",
-    ADMIN = "ADMIN"
+    USER = "ROLE_USER",
+    ADMIN = "ROLE_ADMIN"
 }
 
-export type Auth = {
+export type AuthLogin = {
     username: string,
+    password: string
+}
+
+export type AuthRegister = {
+    fullName: string,
+    email: string,
     password: string
 }
 
@@ -21,6 +27,16 @@ export type ApiResponse<T> = {
 }
 
 
-export const enum API {
-    LOGIN = "/auth/login"
+export const  API  ={
+    LOGIN : "/auth/login",
+    REGISTER : "/auth/register",
+    CATEGORY : {
+        GET_LIST_CATEGORIES : "/api/categories/public"
+    },
+    PRODUCT:{
+        CREATE:"/api/products/admin",
+        GET_LIST_BY_STORE:'/api/products/admin/get-list-product-by-store',
+        GET_LIST_BY_CATEGORY:'/api/products/public/get-list-product-by-category'
+    }
+
 }

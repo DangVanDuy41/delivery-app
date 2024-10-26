@@ -10,6 +10,7 @@ const Index = () => {
   return (
     <>
       <Stack.Screen options={{
+        title:"",
         headerLeft: () => (
           <TouchableOpacity onPress={onLogout}>
             <View>

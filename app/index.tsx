@@ -1,40 +1,46 @@
-import { TextInput, View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
-import useAuth from '@/hooks/useAuth';
+import { Stack } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import Login from '@/components/Login'
+import Register from '@/components/Register'
 
-
-
-const Index = () => {
-    const { onLogin } = useAuth();
-    const [username, setUsername] = useState<string>("dangvanduy4103@gmail.com");
-    const [password, setPassword] = useState<string>("123");
-
+const index = () => {
+    const [active, setActive] = useState<boolean>(true);
     return (
-        <View className='flex-1 '>
-            <View className='flex-1 justify-center items-center bg-gray-100 '>
-                <View className='p-5 bg-white shadow-md w-[350px] rounded-xl '>
-                    <TextInput
-                        value={username}
-                        onChangeText={(username) => setUsername(username)}
-                        placeholder='username'
-                        className='mb-4 p-4 text-lg border border-gray-300 '
-                    />
-                    <TextInput
-                        value={password}
-                        onChangeText={(password) => setPassword(password)}
-                        secureTextEntry
-                        placeholder='password'
-                        className='p-4 border text-lg border-gray-300 rounded'
-                    />
-                    <TouchableOpacity className=' w-[50%] m-auto mt-4 ' onPress={() => onLogin({ username, password })}>
-                        <View className='bg-black p-3 rounded-xl'>
-                            <Text className='text-white text-center font-bold text-xl'>Login</Text>
-                        </View>
-                    </TouchableOpacity>
+        <View className='flex-1'>
+            <Stack.Screen
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <View className='flex-1'>
+                <StatusBar style='light' />
+                <View className='flex-1 '>
+                    <View style={styles.radius} className='flex-row  bg-black justify-center pt-72  '>
+                        <TouchableOpacity className='text-white mx-4' onPress={() => setActive(true)} >
+                            <Text className={`p-3 bg-black text-white font-bold text-xl`}>Đăng nhập</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity className='text-white mx-4' onPress={() => setActive(false)}>
+                            <Text className={`p-3 bg-black text-white font-bold text-xl`} >Đăng ký</Text>
+                        </TouchableOpacity>
+                    </View>
+                    {active && <Login />}
+                    {!active && <Register />}
                 </View>
+
             </View>
+
         </View>
+
     )
 }
+const styles = StyleSheet.create({
+    radius: {
+        borderBottomLeftRadius: 50,
+        borderBottomRightRadius: 50
+    },
 
-export default Index
+})
+
+export default index
