@@ -4,7 +4,7 @@ import axios, { AxiosInstance } from "axios"
 import Constants from 'expo-constants';
 import * as SecureStore from 'expo-secure-store';
 
-export const uri = `http://${Constants.manifest2?.extra?.expoGo?.debuggerHost.split(':').shift()}:8088`;
+export const uri = `http://${Constants.manifest2?.extra?.expoGo?.debuggerHost.split(':').shift()}:8080`;
 class Http {
 
     private http: AxiosInstance
